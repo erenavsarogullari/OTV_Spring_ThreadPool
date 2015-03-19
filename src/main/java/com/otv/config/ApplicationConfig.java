@@ -52,7 +52,7 @@ public class ApplicationConfig {
 
     @Bean
     public int queueCapacity() {
-        return 3;
+        return 10;
     }
 
     @Bean

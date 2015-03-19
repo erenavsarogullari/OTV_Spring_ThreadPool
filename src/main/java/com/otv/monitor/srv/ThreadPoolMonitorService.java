@@ -2,13 +2,16 @@ package com.otv.monitor.srv;
 
 import java.util.concurrent.ThreadPoolExecutor;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ThreadPoolMonitorService implements IThreadPoolMonitorService {
+public class ThreadPoolMonitorService extends Thread {
 
     private static final Logger log = Logger.getLogger(ThreadPoolMonitorService.class);
     private ThreadPoolExecutor executor;
+
+    @Autowired
     private long monitoringPeriod;
 
     public void run() {
@@ -31,7 +34,6 @@ public class ThreadPoolMonitorService implements IThreadPoolMonitorService {
         strBuff.append(" - CompletedTaskCount : ").append(executor.getCompletedTaskCount());
         strBuff.append(" - TotalTaskCount : ").append(executor.getTaskCount());
         strBuff.append(" - isTerminated : ").append(executor.isTerminated());
-
         log.debug(strBuff.toString());
     }
 
