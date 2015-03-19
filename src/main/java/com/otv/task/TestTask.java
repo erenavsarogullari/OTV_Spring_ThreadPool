@@ -1,46 +1,41 @@
 package com.otv.task;
 
 import org.apache.log4j.Logger;
+import org.springframework.stereotype.Component;
 
-/**
- * @author onlinetechvision.com
- * @since 17 Oct 2011
- * @version 1.0.0
- *
- */
+@Component
 public class TestTask implements Runnable {
-	
-	private static Logger log = Logger.getLogger(TestTask.class);
-	String taskName;
 
-	public TestTask() {
-	}
+    private static Logger log = Logger.getLogger(TestTask.class);
+    private String taskName;
 
-	public TestTask(String taskName) {
-		this.taskName = taskName;
-	}
+    public TestTask() {
+    }
 
-	public void run() {
-		try {
-			log.debug(this.taskName + " : is started.");
-			Thread.sleep(10000);
-			log.debug(this.taskName + " : is completed.");
-		} catch (InterruptedException e) {
-			log.error(this.taskName + " : is not completed!");
-			e.printStackTrace();
-		}		
-	}
+    public TestTask(String taskName) {
+        this.taskName = taskName;
+    }
 
-	@Override
-	public String toString() {
-		return (getTaskName());
-	}
+    public void run() {
+        try {
+            log.debug(this.taskName + " : is started.");
+            Thread.sleep(10000);
+            log.debug(this.taskName + " : is completed.");
+        } catch (InterruptedException e) {
+            log.error(this.taskName + " : is not completed!");
+        }
+    }
 
-	public String getTaskName() {
-		return taskName;
-	}
+    @Override
+    public String toString() {
+        return (getTaskName());
+    }
 
-	public void setTaskName(String taskName) {
-		this.taskName = taskName;
-	}
+    public String getTaskName() {
+        return taskName;
+    }
+
+    public void setTaskName(String taskName) {
+        this.taskName = taskName;
+    }
 }
